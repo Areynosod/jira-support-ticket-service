@@ -3,7 +3,6 @@ import { Input } from "../ui/input-text";
 import { TextArea } from "../ui/textarea-input";
 import { Select } from "../ui/select";
 import { FeedbackType } from "@/schema/feedback-schema";
-import { FeedbackErrorMessage } from "./feedback-error-message";
 
 type FeedbackFormProps = {
   data: FeedbackType | null;
@@ -11,6 +10,11 @@ type FeedbackFormProps = {
 };
 
 export const FeedbackForm: FC<FeedbackFormProps> = ({ data, errors }) => {
+  const errorFullname = errors?.includes("Full name is required");
+  const errorEmail = errors?.includes("Invalid email");
+  const errorType = errors?.includes("Type is required");
+  const errorDescription = errors?.includes("Description is required");
+
   return (
     <form
       hx-post="/"
@@ -31,6 +35,7 @@ export const FeedbackForm: FC<FeedbackFormProps> = ({ data, errors }) => {
           value={data?.full_name || ""}
           placeholder="Full name"
           type="text"
+          error={errorFullname}
         />
 
         <Input
@@ -39,12 +44,14 @@ export const FeedbackForm: FC<FeedbackFormProps> = ({ data, errors }) => {
           placeholder="example@gmail.com"
           type="email"
           value={data?.email || ""}
+          error={errorEmail}
         />
 
         <Select
           label="Type"
           name="type"
           options={["Question", "Feature Request", "Bug", "Feedback"]}
+          error={errorType}
         />
 
         <TextArea
@@ -52,19 +59,18 @@ export const FeedbackForm: FC<FeedbackFormProps> = ({ data, errors }) => {
           name="description"
           placeholder="Description"
           type="text"
+          error={errorDescription}
         />
 
         {errors && errors.length > 0 && (
           <div className=" p-2 rounded-md mb-4">
             {errors.map((error) => (
               <p key={error}>
-                <span className="text-red-500">*</span> {error}
+                <span className="error-color">*</span> {error}
               </p>
             ))}
           </div>
         )}
-
-        {/* <FeedbackErrorMessage /> */}
 
         <div className="flex justify-center pt-2 sm:pt-4">
           <button type="submit" className="btn btn-primary">
