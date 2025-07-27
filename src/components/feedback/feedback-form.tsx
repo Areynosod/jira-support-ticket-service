@@ -63,7 +63,7 @@ export const FeedbackForm: FC<FeedbackFormProps> = ({ data, errors }) => {
         />
 
         {errors && errors.length > 0 && (
-          <div className=" p-2 rounded-md mb-4">
+          <div className="p-2 rounded-md bg-red-100">
             {errors.map((error) => (
               <p key={error}>
                 <span className="error-color">*</span> {error}
@@ -72,7 +72,7 @@ export const FeedbackForm: FC<FeedbackFormProps> = ({ data, errors }) => {
           </div>
         )}
 
-        <div className="flex justify-center pt-2 sm:pt-4">
+        <div className="flex justify-center py-2">
           <button type="submit" className="btn btn-primary">
             Send Feedback
           </button>
