@@ -1,0 +1,22 @@
+{
+  "name": "my-app",
+  "scripts": {
+    "dev:watch": "concurrently \"bun run --watch src/main.tsx\" \"npx @tailwindcss/cli -i ./src/styles/input.css -o ./public/output.css --watch\"",
+    "dev": "npm run build:css && bun run src/main.tsx",
+    "build:css": "npx @tailwindcss/cli -i ./src/styles/input.css -o ./public/output.css --minify",
+    "start": "bun run src/main.tsx"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.17.1",
+    "@hono/zod-validator": "^0.7.2",
+    "hono": "^4.8.8",
+    "zod": "^4.0.10"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.11"
+  }
+}
