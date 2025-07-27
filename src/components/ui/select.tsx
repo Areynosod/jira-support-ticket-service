@@ -6,6 +6,7 @@ interface SelectProps {
   options: string[];
   placeholder?: string;
   required?: boolean;
+  error?: boolean;
 }
 
 export const Select: FC<SelectProps> = ({
@@ -13,13 +14,18 @@ export const Select: FC<SelectProps> = ({
   name,
   options,
   placeholder = "Select an option",
+  error,
 }) => {
   return (
     <div className="flex flex-col my-4">
-      <label className="text-sm font-bold mb-1 text-gray-500">{label}</label>
+      <label className="text-sm font-bold mb-1 text-gray-500">
+        {label} {error && <span className="error-color">*</span>}
+      </label>
       <select
         required={false}
-        className="border-2 border-gray-300 rounded-md px-2 py-1 bg-white"
+        className={`border-2 border-gray-300 rounded-md px-2 py-1 bg-white ${
+          error ? "border-red-300" : ""
+        }`}
         name={name}
       >
         <option value="" disabled selected>
