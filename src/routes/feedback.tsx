@@ -47,11 +47,7 @@ feedback.post(
           | "Bug",
       };
 
-      return c.html(
-        <FeedbackSuccessMessage
-          queryParams={`?email=${data.email}&name=${data.full_name}`}
-        />
-      );
+      return c.html(<FeedbackSuccessMessage />);
     } catch (error) {
       console.error("Unhandled error in feedback submission:", error);
       return c.html(<FeedbackErrorMessage />);
