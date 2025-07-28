@@ -217,6 +217,9 @@
   .h-8 {
     height: calc(var(--spacing) * 8);
   }
+  .h-\[90vh\] {
+    height: 90vh;
+  }
   .w-8 {
     width: calc(var(--spacing) * 8);
   }
@@ -342,6 +345,9 @@
   }
   .text-white {
     color: var(--color-white);
+  }
+  .bg-blend-darken {
+    background-blend-mode: darken;
   }
   .sm\:rounded-md {
     @media (width >= 40rem) {
