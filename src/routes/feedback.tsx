@@ -9,7 +9,7 @@ import { feedbackSchema, FeedbackType } from "@/schema/feedback-schema";
 import { getTitle } from "private";
 import NoProject from "@/components/no-project";
 import { projectSchema } from "@/schema/project-schema";
-import { verifyResCloudflare } from "@/utils/functions";
+import { handleCreateIssue, verifyResCloudflare } from "@/utils/functions";
 
 const feedback = new Hono();
 
@@ -81,12 +81,22 @@ feedback.post(
           | "Bug",
       };
       const queryParams = `/?project=${project}`;
+      await handleCreateIssue({
+        feedbackData: data,
+        project,
+      });
+
       return c.html(<FeedbackSuccessMessage queryParams={queryParams} />);
-    } catch (error) {
+    } catch (error: any) {
       const { project } = c.req.valid("query");
       const queryParams = `/?project=${project}`;
       console.error("Unhandled error in feedback submission:", error);
-      return c.html(<FeedbackErrorMessage queryParams={queryParams} />);
+      return c.html(
+        <FeedbackErrorMessage
+          queryParams={queryParams}
+          message={error.message}
+        />
+      );
     }
   }
 );
