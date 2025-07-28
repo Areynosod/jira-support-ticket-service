@@ -77,18 +77,53 @@ export const FeedbackForm: FC<FeedbackFormProps> = ({
           </div>
         )}
         <div className="flex justify-center py-2">
-          <div
-            className="cf-turnstile"
-            data-sitekey={process.env.CF_TURNSTILE_SITE_KEY}
-            data-theme="light"
-          ></div>
+          <div id="turnstile-widget"></div>
         </div>
+
         <div className="flex justify-center py-2">
           <button type="submit" className="btn btn-primary">
             Send Feedback
           </button>
         </div>
       </div>
+
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            function initializeTurnstile() {
+              if (typeof turnstile !== 'undefined') {
+                const existingWidget = document.getElementById('turnstile-widget');
+                if (existingWidget && existingWidget.children.length > 0) {
+                  try {
+                    turnstile.reset();
+                  } catch (e) {
+                    console.log('Turnstile reset failed, rendering new widget');
+                    existingWidget.innerHTML = '';
+                    turnstile.render('#turnstile-widget', {
+                      sitekey: '${process.env.CF_TURNSTILE_SITE_KEY}',
+                      theme: 'light'
+                    });
+                  }
+                } else {
+                  turnstile.render('#turnstile-widget', {
+                    sitekey: '${process.env.CF_TURNSTILE_SITE_KEY}',
+                    theme: 'light'
+                  });
+                }
+              } else {
+                setTimeout(initializeTurnstile, 100);
+              }
+            }
+            
+           
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', initializeTurnstile);
+            } else {
+              initializeTurnstile();
+            }
+          `,
+        }}
+      />
     </form>
   );
 };
