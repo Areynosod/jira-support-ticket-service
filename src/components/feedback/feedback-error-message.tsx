@@ -18,7 +18,7 @@ export const FeedbackErrorMessage: FC<{
         <h3 class="text-xl font-bold text-white text-center">
           Submission Error
         </h3>
-        <p class="text-black  text-center">{message}</p>
+        <p class="text-black text-center">{message}</p>
 
         <div className="flex justify-center">
           <button
@@ -26,6 +26,7 @@ export const FeedbackErrorMessage: FC<{
             className="btn btn-outline btn-sm"
             hx-get={queryParams}
             hx-target="#main-content"
+            hx-on="htmx:afterRequest: if(event.detail.xhr.status === 200) { setTimeout(() => { if(typeof turnstile !== 'undefined') turnstile.reset(); }, 100); }"
           >
             Try Again
           </button>

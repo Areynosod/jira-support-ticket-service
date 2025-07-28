@@ -26,6 +26,7 @@ export const FeedbackSuccessMessage: FC<{
             className="btn btn-outline btn-sm"
             hx-get={queryParams}
             hx-target="#main-content"
+            hx-on="htmx:afterRequest: if(event.detail.xhr.status === 200) { setTimeout(() => { if(typeof turnstile !== 'undefined') turnstile.reset(); }, 100); }"
           >
             Send Another
           </button>
