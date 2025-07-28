@@ -5,7 +5,7 @@ export const FeedbackErrorMessage: FC<{
   queryParams?: string;
 }> = ({
   message = "There was an error submitting your feedback. Please try again.",
-  queryParams = "",
+  queryParams = "/",
 }) => {
   return (
     <div class="w-full max-w-md mx-auto rounded-none sm:rounded-md">
@@ -24,7 +24,7 @@ export const FeedbackErrorMessage: FC<{
           <button
             type="button"
             className="btn btn-outline btn-sm"
-            hx-get="/"
+            hx-get={queryParams}
             hx-target="#main-content"
           >
             Try Again

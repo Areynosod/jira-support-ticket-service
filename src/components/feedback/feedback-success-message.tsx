@@ -5,6 +5,7 @@ export const FeedbackSuccessMessage: FC<{
   queryParams?: string;
 }> = ({
   message = "Thank you for your feedback. We'll get back to you soon!",
+  queryParams = "/",
 }) => {
   return (
     <div class="w-full max-w-md mx-auto rounded-none sm:rounded-md">
@@ -23,7 +24,7 @@ export const FeedbackSuccessMessage: FC<{
           <button
             type="button"
             className="btn btn-outline btn-sm"
-            hx-get="/"
+            hx-get={queryParams}
             hx-target="#main-content"
           >
             Send Another
