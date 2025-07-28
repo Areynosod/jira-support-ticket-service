@@ -1,11 +1,9 @@
 import { FC } from "hono/jsx";
 
 const Layout: FC = (props) => {
-  const title = process.env.TITLE;
   return (
     <html>
       <head>
-        <title>{title}</title>
         <script
           src="https://challenges.cloudflare.com/turnstile/v0/api.js"
           async
