@@ -7,9 +7,14 @@ import { FeedbackType } from "@/schema/feedback-schema";
 type FeedbackFormProps = {
   data: FeedbackType | null;
   errors: string[] | null;
+  project: string;
 };
 
-export const FeedbackForm: FC<FeedbackFormProps> = ({ data, errors }) => {
+export const FeedbackForm: FC<FeedbackFormProps> = ({
+  data,
+  errors,
+  project,
+}) => {
   const errorFullname = errors?.includes("Full name is required");
   const errorEmail = errors?.includes("Invalid email");
   const errorType = errors?.includes("Type is required");
@@ -17,7 +22,7 @@ export const FeedbackForm: FC<FeedbackFormProps> = ({ data, errors }) => {
 
   return (
     <form
-      hx-post="/"
+      hx-post={`/?project=${project}`}
       hx-target="this"
       hx-swap="outerHTML"
       className="w-full max-w-md mx-auto bg-gray-100 rounded-none sm:rounded-md m-4"
@@ -71,7 +76,13 @@ export const FeedbackForm: FC<FeedbackFormProps> = ({ data, errors }) => {
             ))}
           </div>
         )}
-
+        <div className="flex justify-center py-2">
+          <div
+            className="cf-turnstile"
+            data-sitekey={process.env.CF_TURNSTILE_SITE_KEY}
+            data-theme="light"
+          ></div>
+        </div>
         <div className="flex justify-center py-2">
           <button type="submit" className="btn btn-primary">
             Send Feedback
