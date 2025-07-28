@@ -6,10 +6,17 @@ const Layout: FC = (props) => {
     <html>
       <head>
         <title>{title}</title>
+        <script
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+          async
+          defer
+        ></script>
         <script src="https://unpkg.com/htmx.org@1.9.10"></script>
         <link rel="stylesheet" href="/output.css" />
       </head>
-      <body id="main-content">{props.children}</body>
+      <body id="main-content" className="bg-blend-darken">
+        {props.children}
+      </body>
     </html>
   );
 };
