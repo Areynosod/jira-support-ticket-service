@@ -81,7 +81,10 @@ export const FeedbackForm: FC<FeedbackFormProps> = ({
 				</div>
 
 				<div className="flex justify-center py-2">
-					<button type="submit" className="btn btn-primary">
+					<button
+						type="submit"
+						className="btn btn-primary"
+						hx-disabled-elt="this">
 						Send Feedback
 						<img id="spinner" class="htmx-indicator" src="/bars.svg" />
 					</button>
