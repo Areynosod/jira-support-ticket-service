@@ -50,6 +50,7 @@ export const FeedbackForm: FC<FeedbackFormProps> = ({
 					value={data?.email || ''}
 					error={errorEmail}
 				/>
+				<Input label="File" name="file" placeholder="Upload file" type="file" />
 
 				<Select
 					label="Type"

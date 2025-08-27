@@ -158,6 +158,10 @@ feedback.post(
 			}
 
 			const formData = await c.req.formData();
+
+			const file = formData.get('file') as File | null;
+			console.log(file);
+
 			const data: FeedbackData = {
 				full_name: formData.get('full_name') as string,
 				email: formData.get('email') as string,
@@ -176,7 +180,7 @@ feedback.post(
 
 			return c.html(<FeedbackSuccessMessage queryParams={queryParams} />);
 		} catch (error: any) {
-			const { project } = c.req.valid('query');
+			const { project } = c.req.valid('param');
 			const queryParams = `/${project}`;
 			console.error('Unhandled error in feedback submission:', error);
 			return c.html(
