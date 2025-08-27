@@ -108,7 +108,8 @@ feedback.get(
 		}
 	}),
 	(c) => {
-		const { project } = c.req.valid('param');
+		const param = c.req.valid('param');
+		const project = (param as { project: string }).project;
 		const title = getTitle(project);
 
 		return c.html(
@@ -132,7 +133,7 @@ feedback.post(
 	zValidator('form', feedbackSchema, (result, c) => {
 		if (!result.success) {
 			const errors = result.error.issues.map((issue) => issue.message);
-			const project = c.req.query('project') || '';
+			const project = c.req.param('project') || '';
 			return c.html(
 				<FeedbackForm
 					data={result.data as FeedbackType}
@@ -144,7 +145,7 @@ feedback.post(
 	}),
 	async (c) => {
 		try {
-			const { project } = c.req.valid('query');
+			const project = c.req.param('project');
 
 			const body = await c.req.parseBody();
 			const turnstileToken = body['cf-turnstile-response']?.toString();

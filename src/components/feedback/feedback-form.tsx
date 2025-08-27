@@ -82,7 +82,7 @@ export const FeedbackForm: FC<FeedbackFormProps> = ({
 				<div className="flex justify-center py-2">
 					<button type="submit" className="btn btn-primary">
 						Send Feedback
-						<img id="spinner" class="htmx-indicator" src="/img/bars.svg" />
+						<img id="spinner" class="htmx-indicator" src="/bars.svg" />
 					</button>
 				</div>
 			</div>
