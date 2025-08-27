@@ -167,7 +167,7 @@ feedback.post(
 					| 'Feature Request'
 					| 'Bug'
 			};
-			const queryParams = `/?project=${project}`;
+			const queryParams = `/${project}`;
 			await handleCreateIssue({
 				feedbackData: data,
 				project
@@ -176,7 +176,7 @@ feedback.post(
 			return c.html(<FeedbackSuccessMessage queryParams={queryParams} />);
 		} catch (error: any) {
 			const { project } = c.req.valid('query');
-			const queryParams = `/?project=${project}`;
+			const queryParams = `/${project}`;
 			console.error('Unhandled error in feedback submission:', error);
 			return c.html(
 				<FeedbackErrorMessage
