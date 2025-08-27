@@ -125,7 +125,7 @@ feedback.get(
 
 feedback.post(
 	'/:project',
-	zValidator('query', projectSchema, (result, c) => {
+	zValidator('param', projectSchema, (result, c) => {
 		if (!result.success) {
 			return c.html(<NoProject />);
 		}
