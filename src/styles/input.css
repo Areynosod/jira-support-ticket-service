@@ -1,25 +1,36 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @layer components {
-  .btn {
-    @apply px-4 py-2 rounded-md font-bold text-sm transition-colors duration-200 my-4 cursor-pointer;
-  }
-  .btn-primary {
-    @apply bg-blue-600 text-white hover:bg-blue-700 disabled:bg-blue-300;
-  }
-  .btn-secondary {
-    @apply bg-gray-600 text-white hover:bg-gray-700 disabled:bg-gray-300;
-  }
-  .btn-danger {
-    @apply bg-red-600 text-white hover:bg-red-700 disabled:bg-red-300;
-  }
-  .btn-outline {
-    @apply bg-transparent text-black border border-black hover:bg-white hover:text-black;
-  }
-  .btn-sm {
-    @apply px-2 py-1;
-  }
-  .error-color {
-    @apply text-red-400;
-  }
+	.btn {
+		@apply px-4 py-2 rounded-md font-bold text-sm transition-colors duration-200 my-4 cursor-pointer;
+	}
+	.btn-primary {
+		@apply bg-blue-600 text-white hover:bg-blue-700 disabled:bg-blue-300;
+	}
+	.btn-secondary {
+		@apply bg-gray-600 text-white hover:bg-gray-700 disabled:bg-gray-300;
+	}
+	.btn-danger {
+		@apply bg-red-600 text-white hover:bg-red-700 disabled:bg-red-300;
+	}
+	.btn-outline {
+		@apply bg-transparent text-black border border-black hover:bg-white hover:text-black;
+	}
+	.btn-sm {
+		@apply px-2 py-1;
+	}
+	.error-color {
+		@apply text-red-400;
+	}
+}
+
+.htmx-indicator {
+	opacity: 0;
+	transition: opacity 500ms ease-in;
+}
+.htmx-request .htmx-indicator {
+	opacity: 1;
+}
+.htmx-request.htmx-indicator {
+	opacity: 1;
 }
