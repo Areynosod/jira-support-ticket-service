@@ -161,8 +161,6 @@ feedback.post(
       const fileEntry = formData.get("file");
       let file: File | null = null;
 
-      console.log("Raw file entry:", fileEntry, typeof fileEntry);
-
       if (
         fileEntry &&
         fileEntry instanceof File &&
@@ -171,7 +169,6 @@ feedback.post(
       ) {
         file = fileEntry;
       } else {
-        console.log("No valid file found or empty file");
         file = null;
       }
 
@@ -184,6 +181,12 @@ feedback.post(
           | "Feedback"
           | "Feature Request"
           | "Bug",
+        priority:
+          (formData.get("priority") as
+            | "Lowest"
+            | "Low"
+            | "Medium"
+            | "Highest") || "Lowest",
       };
 
       await handleCreateIssue({

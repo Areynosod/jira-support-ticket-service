@@ -31,7 +31,7 @@ export const handleCreateIssue = async ({
         }`,
         description: `From: ${feedbackData.full_name}\nEmail: ${feedbackData.email}\nType: ${feedbackData.type}\n\n${feedbackData.description}\n\n`,
         priority: {
-          name: feedbackData.type === "Bug" ? "High" : "Medium",
+          name: feedbackData.priority || "Lowest",
         },
         duedate: formatDate,
         issuetype: {

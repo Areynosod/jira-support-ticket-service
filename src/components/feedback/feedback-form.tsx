@@ -19,6 +19,7 @@ export const FeedbackForm: FC<FeedbackFormProps> = ({
   const errorEmail = errors?.includes("Invalid email");
   const errorType = errors?.includes("Type is required");
   const errorDescription = errors?.includes("Description is required");
+  const errorPriority = errors?.includes("Priority is required");
 
   return (
     <form
@@ -61,6 +62,12 @@ export const FeedbackForm: FC<FeedbackFormProps> = ({
           options={["Question", "Feature Request", "Bug", "Feedback"]}
           error={errorType}
         />
+        <Select
+          label="Urgency"
+          name="priority"
+          options={["Lowest", "Low", "Medium", "Highest"]}
+          error={errorPriority}
+        />
 
         <TextArea
           label="Description"
@@ -86,10 +93,10 @@ export const FeedbackForm: FC<FeedbackFormProps> = ({
         <div className="flex justify-center py-2">
           <button
             type="submit"
-            className="btn btn-primary"
+            className="btn btn-primary flex flex-row gap-2 items-center"
             hx-disabled-elt="this"
           >
-            Send Feedback
+            <p>Send Feedback</p>
             <img id="spinner" class="htmx-indicator" src="/bars.svg" />
           </button>
         </div>

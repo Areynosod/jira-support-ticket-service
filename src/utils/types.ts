@@ -3,6 +3,7 @@ export type FeedbackData = {
   email: string;
   description: string;
   type: "Question" | "Feedback" | "Feature Request" | "Bug";
+  priority?: "Lowest" | "Low" | "Medium" | "Highest";
   error?: string;
 };
 
